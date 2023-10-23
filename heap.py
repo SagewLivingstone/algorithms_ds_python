@@ -16,7 +16,7 @@ class MinHeap:
         return (parentIndex * 2) + 2
     @staticmethod
     def parentIndex(childIndex) -> int:
-        return (childIndex - 1) / 2
+        return (childIndex - 1) // 2
 
     def hasLeftChild(self, i) -> bool:
         return MinHeap.leftChildIndex(i) < self.size
@@ -37,6 +37,11 @@ class MinHeap:
         self.items[a] = self.items[b]
         self.items[b] = temp
     
-
+    def _siftup(self, i):
+        parent = MinHeap.parentIndex(i)
+        while i != 0 and self.items[i] < self.items[parent]:
+            self.items[i], self.items[parent] = self.items[parent], self.items[i]
+            i = parent
+            parent = MinHeap.parentIndex(i)
 
     
